@@ -1,0 +1,232 @@
+.intro-container {
+	/* Keep your fixed positioning */
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0; /* Add right/bottom to ensure full stretch */
+	bottom: 0;
+
+	/* Dimensions */
+	width: 100vw;
+	height: 100vh;
+	height: 100dvh; /* ADD THIS: dynamic viewport height fixes mobile browser bar gaps */
+
+	/* Background Settings */
+	background-size: cover;
+	background-position: center center;
+	background-repeat: no-repeat;
+
+	/* Layout */
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	/* Reset margins just in case */
+	margin: 0;
+	padding: 0;
+
+	overflow: hidden;
+	z-index: 0;
+}
+
+.intro-layout {
+	width: 100%;
+	max-width: 1200px;
+	display: flex;
+	gap: 2rem;
+	padding: 2rem;
+	box-sizing: border-box;
+	z-index: 10; /* Content above background */
+}
+
+.left-column {
+	flex: 1 1 60%;
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start; /* anchor content to left side of the column */
+	padding-left: 2rem;
+}
+
+.right-column {
+	width: 360px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+/* Earth image sizing */
+.earth {
+	width: 420px;
+	max-width: 72%;
+	height: auto;
+	z-index: 2;
+	transform-origin: center bottom;
+	/* keep Earth in normal flow so it sits in the left column */
+	display: block;
+	margin-left: 0;
+}
+
+/* Idle screen items */
+.idle-screen {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1.5rem;
+	padding: 1rem;
+}
+
+.logo {
+	width: 700px; /* Responsive width */
+	height: auto;
+	filter: drop-shadow(0 10px 30px rgba(250, 123, 18, 0.35));
+}
+
+.start-button {
+	width: 300px;
+	height: auto;
+	cursor: pointer;
+}
+
+/* Speech bubble */
+.speech-bubble {
+	position: absolute;
+	top: 8%; /* Moved up slightly to accommodate larger size */
+	left: 40%;
+	width: 700px;
+	height: 300px;
+	padding: 2rem; /* Increased padding for text */
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 20;
+	/* Stretch the PNG to fill the new larger dimensions */
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+.speech-bubble p {
+	margin: 0;
+	padding: 0.5rem;
+	text-align: center;
+	color: var(--color-accent2);
+	font-weight: 700; /* bold */
+	font-family: var(--font-size-lg);
+	/* default font size (mobile)
+		 Sizes requested: 39px, 31px, 25px, 20px, 16px for various breakpoints */
+	font-size: 16px;
+	line-height: 1.05;
+	letter-spacing: 0.2px;
+
+	/* NEW: Force wrapping */
+	white-space: normal; /* Ensure text wraps */
+	max-width: 67%; /* Limit width to force 2 lines on long text */
+	overflow-wrap: break-word; /* Prevent long words from overflowing */
+}
+
+/* make animated letters display inline-block so they can animate */
+.speech-bubble .bubble-text {
+	display: inline-block;
+	white-space: pre-wrap;
+}
+.speech-bubble .bubble-text span {
+	display: inline-block;
+}
+
+/* screen-reader only fallback text */
+.sr-only {
+	position: absolute !important;
+	height: 1px;
+	width: 1px;
+	overflow: hidden;
+	clip: rect(1px, 1px, 1px, 1px);
+	white-space: nowrap;
+}
+
+/* Responsive font sizes for the speech bubble text */
+@media (min-width: 480px) {
+	.speech-bubble p {
+		font-size: var(--font-size-sm);
+	}
+}
+@media (min-width: 800px) {
+	.speech-bubble p {
+		font-size: var(--font-size-md);
+	}
+}
+@media (min-width: 1100px) {
+	.speech-bubble p {
+		font-size: var(--font-size-lg);
+	}
+}
+@media (min-width: 1400px) {
+	.speech-bubble p {
+		font-size: var(--font-size-xl);
+	}
+}
+
+/* Sun */
+.sun {
+	position: absolute;
+	top: 8%;
+	right: 10%;
+	width: 160px;
+	height: auto;
+	z-index: 4;
+}
+
+/* Popup overlay */
+.popup-overlay {
+	position: absolute;
+	inset: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: rgba(0, 0, 0, 0.6);
+	z-index: 50;
+}
+
+.popup-content {
+	background: #fdf4e9;
+	padding: 3rem;
+	border-radius: 20px;
+	text-align: center;
+	box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+	max-width: 90%;
+}
+
+.popup-content h3 {
+	font-size: var(--font-size-lg);
+	color: #333;
+	font-weight: bold;
+	margin-bottom: 3rem;
+}
+
+.popup-buttons {
+	display: flex;
+	gap: 2rem;
+	justify-content: center;
+}
+
+.popup-buttons img {
+	width: 150px;
+	cursor: pointer;
+}
+
+@media (max-width: 800px) {
+	.intro-layout {
+		flex-direction: column-reverse;
+		padding: 1rem;
+	}
+	.right-column {
+		width: 100%;
+	}
+	.earth {
+		width: 60%;
+	}
+	.speech-bubble {
+		left: 50%;
+		transform: translateX(-50%);
+		top: 5%;
+	}
+}

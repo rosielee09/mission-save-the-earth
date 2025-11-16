@@ -1,68 +1,47 @@
+/* Background used by the Intro scene */
+/* Import Quicksand font */
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap");
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+	/* Typography */
+	--font-family: "Quicksand", system-ui, Avenir, Helvetica, Arial,
+		sans-serif;
+	--font-size-xl: 39px;
+	--font-size-lg: 31px;
+	--font-size-md: 25px;
+	--font-size-sm: 20px;
+	--font-size-xs: 16px;
+	--font-weight-regular: 400;
+	--font-weight-bold: 700;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+	/* Colour palette */
+	--color-primary: #002b4c;
+	--color-secondary: #f2cc9b;
+	--color-accent1: #f56248;
+	--color-accent2: #762c2c;
+	--color-tertiary: #f4a423;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+/* Background used by the Intro scene: use a fixed pseudo-element so it
+	 reliably covers the viewport and stays behind all content */
+.intro-bg {
+	background: none; /* ensure there's no competing body BG */
 }
 
+/* full-viewport background behind everything */
+.intro-bg::before {
+	content: "";
+	position: fixed;
+	inset: 0; /* top:0; right:0; bottom:0; left:0 */
+	background-image: url("/background/Intro-bg.png");
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	z-index: -1; /* sit behind page content */
+	pointer-events: none; /* don't block clicks */
+}
+
+/* Apply font globally by default; components may opt-in */
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+	font-family: var(--font-family);
 }
