@@ -22,8 +22,6 @@
 	--color-tertiary: #f4a423;
 }
 
-/* Background used by the Intro scene: use a fixed pseudo-element so it
-	 reliably covers the viewport and stays behind all content */
 .intro-bg {
 	background: none; /* ensure there's no competing body BG */
 }
@@ -41,7 +39,19 @@
 	pointer-events: none; /* don't block clicks */
 }
 
-/* Apply font globally by default; components may opt-in */
 body {
 	font-family: var(--font-family);
+}
+
+html,
+body,
+#root {
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+.intro-container {
+	min-height: 100dvh;
 }
